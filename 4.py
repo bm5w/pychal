@@ -3,19 +3,22 @@ http://www.pythonchallenge.com/pc/def/linkedlist.php"""
 import urllib
 
 
-def main(num=12345):
+def main(num=12345, count=0):
+    if count == 400:
+        return num
     out = urllib.urlopen(("http://www.pythonchallenge.com/pc/def/"
                           "linkedlist.php?nothing={}").format(num))
-    temp = out.readline()
-    print temp
-    num = ''.join([x for x in temp if x.isdigit()])
+    temp = out.read()
+    print temp, count
+    query = u"and the next nothing is "
+    num = temp.find(query) + len(query)
+
     try:
-        main(int(num))
+        main(int(temp[num:]), count+1)
     except ValueError:
-        print out.read()
         temp = out.url
         num = ''.join([x for x in temp if x.isdigit()])
-        main(int(num)/2)
+        main(int(num)/2, count+1)
 
 if __name__ == "__main__":
     main()
