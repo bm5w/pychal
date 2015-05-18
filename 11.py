@@ -7,23 +7,29 @@ un = 'huge'
 pw = 'file'
 
 
+# def main():
+#     setup_auth_handler()
+#     img = urllib2.urlopen(url)
+#     im = Image.open(img)
+#     png_matrix = im.load()
+#     draw = ImageDraw.Draw(im)
+#     odd_even = 0
+#     for row in xrange(int(im.size[1])):
+#         for column in xrange(int(im.size[0])):
+#             if column % 2 == odd_even:
+#                 draw.point([(column/2, row/2)], png_matrix[column, row])
+#         # alternate from odd to even or even to odd
+#         if odd_even == 0:
+#             odd_even = 1
+#         else:
+#             odd_even = 0
+#     im.show()
 def main():
     setup_auth_handler()
     img = urllib2.urlopen(url)
     im = Image.open(img)
-    png_matrix = im.load()
-    draw = ImageDraw.Draw(im)
-    odd_even = 0
-    for row in xrange(int(im.size[1])):
-        for column in xrange(int(im.size[0])):
-            if column % 2 == odd_even:
-                draw.point([(column/2, row/2)], png_matrix[column, row])
-        # alternate from odd to even or even to odd
-        if odd_even == 0:
-            odd_even = 1
-        else:
-            odd_even = 0
-    im.show()
+    new = im.resize((320, 240))
+    new.show()
 
 
 def setup_auth_handler():
