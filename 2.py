@@ -1,8 +1,16 @@
 """Python challenge #2: http://www.pythonchallenge.com/pc/def/ocr.html"""
+import collections
 
 
 def unique(i):
-    return set(i)
+    dictionary = collections.OrderedDict()
+    for x in i:
+        if x in dictionary:
+            dictionary[x] += 1
+        else:
+            dictionary[x] = 1
+    return (''.join([key for key, value in dictionary.iteritems()
+                    if value == 1]))
 
 
 if __name__ == "__main__":
