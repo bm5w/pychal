@@ -16,13 +16,21 @@ def main(n=50):
     return a[50]
 
 
-def prime(x):
-    """Return true if prime."""
-    for i in xrange(2, x//2):
-        if x % i == 0:
-            print 'x: {}, i: {}'.format(x, i)
-            return False
-    return True
+def look_and_say_next(inp):
+    """Given current number, get next in Look-and-say sequence."""
+    output = ''
+    for index, curr in enumerate(str(inp)):
+        count = 0
+        if index == 0:
+            previous = curr
+        else:
+            if previous == curr:
+                count += 1
+            else:
+                output += count
+                output += previous
+                previous = curr
+    return output
 
 if __name__ == "__main__":
     main()
