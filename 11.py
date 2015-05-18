@@ -12,9 +12,10 @@ def main():
     img = urllib2.urlopen(url)
     im = Image.open(img)
     png_matrix = im.load()
-    import pdb; pdb.set_trace()
-    for row in xrange(int(im.size[0])):
-        pass
+    for row in xrange(int(im.size[1])):
+        for column in xrange(int(im.size[0])):
+            print png_matrix[row, column]
+        import pdb; pdb.set_trace()
 
 
 def setup_auth_handler():
