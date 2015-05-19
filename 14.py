@@ -35,7 +35,7 @@ def main():
                 draw.point([dim-level-num-1, dim-level], png_matrix[x, 0])
                 x += 1
             else:                   # left side of square
-                draw.point([level, dim-1-num], png_matrix[x, 0])
+                draw.point([level, dim-level-1-num], png_matrix[x, 0])
                 x += 1
     new_img.show()
 
