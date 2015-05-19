@@ -1,7 +1,6 @@
 """Python challenge #12:
 http://www.pythonchallenge.com/pc/return/evil.html"""
 import urllib2
-from PIL import Image, ImageDraw
 url = 'http://www.pythonchallenge.com/pc/return/evil2.gfx'
 un = 'huge'
 pw = 'file'
@@ -10,7 +9,6 @@ pw = 'file'
 def main():
     setup_auth_handler()
     img = urllib2.urlopen(url)
-    # with open(img, 'r') as file_handle:
     file_content = img.read()
     for i in xrange(0, 5):
         with open('temp{}.jpg'.format(str(i)), "wb") as file_handle:
