@@ -1,7 +1,7 @@
 """Python challenge #16:
 http://www.pythonchallenge.com/pc/return/mozart.html"""
 import urllib2
-from PIL import Image
+from PIL import Image, ImageDraw
 url = 'http://www.pythonchallenge.com/pc/return/mozart.gif'
 un = 'huge'
 pw = 'file'
@@ -14,17 +14,25 @@ def main():
     im = Image.open(img)
     rgb_im = im.convert('RGB')
     seq = list(rgb_im.getdata())
+    new_img = Image.new('RGB', (700, 480))
+    draw = ImageDraw.Draw(new_img)
     output = []
-    for count, x in enumerate(seq):
-        if x == pink:
+    x = 0
+    y = 0
+    for count, pixel in enumerate(seq):
+        draw.point([x, y], pixel)
+        x += 1
+        if pixel == pink:
             if seq[count-1] != pink:
                 output.append(count)
-    print len(output)
-    for count, x in enumerate(output):
-        if count > 0:
-            print x-output[count-1]
+                y += 1
+                x = 0
+    new_img.show()
+    # for count, x in enumerate(output):
+    #     if count > 0:
+    #         print x-output[count-1]
 
-    print len(output)
+    # print len(output)
     # matrix = rgb_im.load()
     # for y in xrange(int(rgb_im.size[1])):
     #     import pdb; pdb.set_trace()
