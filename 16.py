@@ -14,40 +14,16 @@ def main():
     im = Image.open(img)
     rgb_im = im.convert('RGB')
     seq = list(rgb_im.getdata())
-    new_img = Image.new('RGB', (700, 480))
+    new_img = Image.new('RGB', (640, 480))
     draw = ImageDraw.Draw(new_img)
-    output = []
-    x = 0
-    y = 0
-    for count, pixel in enumerate(seq):
-        draw.point([x, y], pixel)
-        x += 1
-        if pixel == pink:
-            if seq[count-1] != pink:
-                output.append(count)
-                y += 1
-                x = 0
+    for row in xrange(im.size[1]):
+        line = seq[row*640:(row+1)*640]
+        mark = line.index(pink)
+        line = line[mark:]+line[:mark]
+        for x, pixel in enumerate(line):
+            draw.point([x, row], pixel)
     new_img.show()
-    # for count, x in enumerate(output):
-    #     if count > 0:
-    #         print x-output[count-1]
 
-    # print len(output)
-    # matrix = rgb_im.load()
-    # for y in xrange(int(rgb_im.size[1])):
-    #     import pdb; pdb.set_trace()
-    #     for x in xrange(int(rgb_im.size[0])):
-    #         print matrix[x, y]
-        # with open('temp{}.jpg'.format(str(i)), "wb") as file_handle:
-        #     file_handle.write(file_content[i::5])
-
-(249, 249, 249)
-(255, 0, 255)
-(255, 0, 255)
-(255, 0, 255)
-(255, 0, 255)
-(255, 0, 255)
-(252, 252, 252)
 
 def setup_auth_handler():
     """Method for setting up authentication."""
