@@ -1,16 +1,16 @@
-"""Solution for python challenge #4:
-http://www.pythonchallenge.com/pc/def/linkedlist.php"""
+"""Python challenge #17:
+http://www.pythonchallenge.com/pc/return/romance.html"""
 import urllib
 
 
-def main(num=75635, count=0):
+def main(num=12345, count=0):
     if count == 400:
         return num
     out = urllib.urlopen(("http://www.pythonchallenge.com/pc/def/"
-                          "linkedlist.php?nothing={}").format(num))
+                          "linkedlist.php?busynothing={}").format(num))
     temp = out.read()
     print temp, count
-    query = u"and the next nothing is "
+    query = u"and the next busynothing is "
     num = temp.find(query) + len(query)
 
     try:
